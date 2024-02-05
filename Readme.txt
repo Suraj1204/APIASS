@@ -13,7 +13,7 @@ Sign In:
 **** curl -X POST -d '{"email": "suraj@gmail.com", "password": "Suraj123"}' http://localhost:8080/signin
 
 Authorization of token:
-**** curl -X GET -H "Authorization: <Token Which is found from Sign In>" http://localhost:8080/protected
+**** curl -X GET -H "Authorization: <Token Which is found from Sign In>" http://localhost:8080/verify
 Replace <TOKEN> with the JWT token obtained from the sign-in response. This request should succeed if the token is valid.
 
 Ex:
