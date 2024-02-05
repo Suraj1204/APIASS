@@ -207,7 +207,7 @@ func authMiddleware(next http.HandlerFunc) http.HandlerFunc {
 // VerifyFunc is a protected route
 func VerifyFunc(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "Protected endpoint")
+	fmt.Fprintf(w, "Token Verified")
 }
 
 // revoketokenFunc handles token revocation requests
@@ -239,7 +239,7 @@ func main() {
 	http.HandleFunc("/revoke", revoketokenFunc)
 	http.HandleFunc("/verify", authMiddleware(VerifyFunc))
 
-	// Start the code
+	// Starting the code
 	fmt.Println("-------------------Code Started--------------------------------")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
