@@ -30,7 +30,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"token": "eyJhbGciOiJIUzI1
 
 
 Referesh
-**** curl -X POST -H "Authorization: <Existing token>" http://localhost:8080/refresh
+**** curl -X POST -H "Authorization: Existing token" http://localhost:8080/refresh
 
 Ex
 curl -X POST -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjE3MDcxOTk0ODh9.6dLKYZ8tmV1EDss0TsOVimumc7vHD363vnSiAgpeUos" http://localhost:8080/refresh
