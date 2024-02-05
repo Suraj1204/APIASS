@@ -20,22 +20,15 @@ Authorization of token:
 
 Replace <TOKEN> with the JWT token obtained from the sign-in response. This request should succeed if the token is valid.
 
-Ex:
-
-curl -X POST -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjE3MDcxOTk0ODh9.6dLKYZ8tmV1EDss0TsOVimumc7vHD363vnSiAgpeUos" http://localhost:8080/refresh
 
 
 Revoke:
-**** curl -X POST -H "Content-Type: application/json" -d '{"token": "Token"}' http://localhost:8080/revoke
 
-Ex:
-curl -X POST -H "Content-Type: application/json" -d '{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjE3MDcxMTkzNjl9.73Y8TnnUvAH8xExyFA8M2XfTyh8oIDSdB9CyRxulbGg"}' http://localhost:8080/revoke
+**** curl -X POST -H "Content-Type: application/json" -d '{"token": "Existing Token"}' http://localhost:8080/revoke
 
 
 Referesh
-**** curl -X POST -H "Authorization: Existing token" http://localhost:8080/refresh
 
-Ex
-curl -X POST -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjE3MDcxOTk0ODh9.6dLKYZ8tmV1EDss0TsOVimumc7vHD363vnSiAgpeUos" http://localhost:8080/refresh
+**** curl -X POST -H "Authorization: Existing token" http://localhost:8080/refresh
 
 
