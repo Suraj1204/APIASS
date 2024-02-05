@@ -31,6 +31,8 @@ var revokedTokens = struct {
 	sync.Mutex
 }{tokens: make(map[string]struct{})}
 
+var signedInUsers = make(map[string]bool)
+
 // GenerateToken generates a JWT token
 func generateToken(email string) (string, error) {
 	fmt.Println("Inside Generate Token function")
@@ -115,6 +117,12 @@ func signInFunc(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Check if user is already signed in
+	// if _, ok := signedInUsers[user.Email]; ok {
+	// 	http.Error(w, "User is already signed in", http.StatusForbidden)
+	// 	return
+	// }
+
 	// Check if user exists and password matches
 	for _, u := range users {
 		if u.Email == user.Email && u.Password == user.Password {
@@ -124,6 +132,9 @@ func signInFunc(w http.ResponseWriter, r *http.Request) {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
+
+			// Mark user as signed in
+			signedInUsers[user.Email] = true
 
 			// Send response with token
 			w.WriteHeader(http.StatusOK)
@@ -193,14 +204,14 @@ func authMiddleware(next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
-// protectedHandler is a protected route
-func protectedHandler(w http.ResponseWriter, r *http.Request) {
+// VerifyFunc is a protected route
+func VerifyFunc(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, "Protected endpoint")
 }
 
-// revokeTokenHandler handles token revocation requests
-func revokeTokenHandler(w http.ResponseWriter, r *http.Request) {
+// revoketokenFunc handles token revocation requests
+func revoketokenFunc(w http.ResponseWriter, r *http.Request) {
 	// Parse JSON request body
 	var body struct {
 		Token string `json:"token"`
@@ -225,10 +236,10 @@ func main() {
 	http.HandleFunc("/signup", signUpFunc)
 	http.HandleFunc("/signin", signInFunc)
 	http.HandleFunc("/refresh", refreshHandler)
-	http.HandleFunc("/revoke", revokeTokenHandler)
-	http.HandleFunc("/protected", authMiddleware(protectedHandler))
+	http.HandleFunc("/revoke", revoketokenFunc)
+	http.HandleFunc("/verify", authMiddleware(VerifyFunc))
 
-	// Start the server
+	// Start the code
 	fmt.Println("-------------------Code Started--------------------------------")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
