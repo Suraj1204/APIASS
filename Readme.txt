@@ -17,7 +17,7 @@ Authorization of token:
 Replace <TOKEN> with the JWT token obtained from the sign-in response. This request should succeed if the token is valid.
 
 Ex:
-curl -X POST -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjE3MDcxOTk0ODh9.6dLKYZ8tmV1EDss0TsOVimumc7vHD363vnSiAgpeUos" http://localhost:8080/refresh
+curl -X POST -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjE3MDcxOTk0ODh9.6dLKYZ8tmV1EDss0TsOVimumc7vHD363vnSiAgpeUos" http://localhost:8080/verify
 
 
 Revoke:
